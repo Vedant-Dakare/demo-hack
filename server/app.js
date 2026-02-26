@@ -27,19 +27,26 @@ connectDB().then(async () => {
 
 // app.use(cors());
 const app = express();
+const allowedOrigins = [
+  "https://demo-hack-jmte.vercel.app",
+  "https://demo-hack-pwrm.vercel.app",
+  "http://localhost:5173",
+];
 
-
-
-
-
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 
 app.use(express.json());
-const corsOptions = {
-  origin: process.env.CORS || "http://localhost:5173",
-  credentials: true,
-};
-console.log("CORS origin:", corsOptions.origin);
-app.use(cors(corsOptions));
 app.use(cookieParser());
 // Serve uploaded images
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
