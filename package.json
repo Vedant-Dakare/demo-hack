@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "form-data": "^4.0.5",
+    "nodemon": "^3.1.14"
+  }
+}
