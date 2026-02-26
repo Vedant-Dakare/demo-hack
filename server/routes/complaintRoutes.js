@@ -13,7 +13,7 @@ const {
   getAllComplaints,
   updateComplaintStatus,
   submitComplaintFeedback,
-} = require("../controller/complaintController"); // ✅ FIXED
+} = require("../controller/complaintController"); 
 
 router.post("/complaints", protect, upload.single("image"), createComplaint);
 

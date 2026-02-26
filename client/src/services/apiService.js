@@ -2,7 +2,8 @@ import axios from "axios";
 
 const API = axios.create({
   // Point to Node server (not Flask). Keep Flask on 5000.
-  baseURL: "http://127.0.0.1:4000/api",
+  baseURL: import.meta.env.VITE_API_URL,
+  withCredentials: true,
 });
 
 API.interceptors.request.use((req) => {
